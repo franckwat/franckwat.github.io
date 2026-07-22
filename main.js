@@ -46,46 +46,10 @@ window.onscroll = () => {
  ScrollReveal().reveal('.home-contact p, .about-content', { origin: 'right'});
 
 
-// Initialize Typed.js using a DOM container so browser translations apply
-let typedInstance = null;
-
-function debounce(fn, wait) {
-    let t;
-    return function(...args) {
-        clearTimeout(t);
-        t = setTimeout(() => fn.apply(this, args), wait);
-    };
-}
-
-function initTyped() {
-    if (typedInstance && typeof typedInstance.destroy === 'function') {
-        try { typedInstance.destroy(); } catch (e) { /* ignore */ }
-        typedInstance = null;
-    }
-
-    const stringsEl = document.querySelector('#typed-strings');
-    if (!stringsEl) return;
-
-    typedInstance = new Typed('.multiple-text', {
-        stringsElement: '#typed-strings',
-        typeSpeed: 60,
-        backSpeed: 40,
-        backDelay: 2000,
-        startDelay: 300,
-        smartBackspace: true,
-        loop: true,
-    });
-}
-
-// start
-initTyped();
-
-// Re-init Typed when the strings container changes (e.g., browser translation)
-const stringsContainer = document.querySelector('#typed-strings');
-if (stringsContainer) {
-    const observer = new MutationObserver(debounce(() => {
-        initTyped();
-    }, 250));
-
-    observer.observe(stringsContainer, { childList: true, subtree: true, characterData: true });
-}
+ const typed = new Typed('.multiple-text', {
+    strings: ['Web developper', 'Designer Web', 'Computer Engineer Student','IT support learner','Networking learner','Java Programming learner'],
+    typeSpeed: 70,
+    backSpeed: 70,
+    backDelay: 1000,
+    loop: true,
+})
