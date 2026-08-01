@@ -52,4 +52,22 @@ window.onscroll = () => {
     backSpeed: 70,
     backDelay: 1000,
     loop: true,
-})
+});
+
+ const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const name = formData.get('name')?.toString().trim() || '';
+        const email = formData.get('email')?.toString().trim() || '';
+        const phone = formData.get('phone')?.toString().trim() || '';
+        const subject = formData.get('subject')?.toString().trim() || 'Nouveau message';
+        const message = formData.get('message')?.toString().trim() || '';
+        const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0ATéléphone: ${phone}%0D%0ASujet: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+
+        window.location.href = `franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        contactForm.reset();
+      });
+    }
