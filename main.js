@@ -54,7 +54,7 @@ window.onscroll = () => {
     loop: true,
 });
 
-/* const contactForm = document.getElementById('contactForm');
+ const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -67,12 +67,19 @@ window.onscroll = () => {
         const message = formData.get('message')?.toString().trim() || '';
         const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0ATéléphone: ${phone}%0D%0ASujet: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
 
-        window.location.href = `mailto:franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        const gmailURL =
+            `https://mail.google.com/mail/?view=cm&fs=1` +
+            `&to=franckwatkakule@gmail.com` +
+            `&su=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(body)}`;
+
+        window.open(gmailURL, "_blank");
+
         contactForm.reset();
       });
-    }  */
+    }  
 
-const contactForm = document.getElementById("contactForm");
+/*const contactForm = document.getElementById("contactForm");
 
 if (contactForm) {
     contactForm.addEventListener("submit", function(e) {
@@ -105,4 +112,4 @@ ${message}
 
         contactForm.reset();
     });
-}
+}    */
