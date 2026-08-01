@@ -54,7 +54,7 @@ window.onscroll = () => {
     loop: true,
 });
 
- const contactForm = document.getElementById('contactForm');
+/* const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -70,4 +70,39 @@ window.onscroll = () => {
         window.location.href = `mailto:franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
         contactForm.reset();
       });
-    }
+    }  */
+
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const subject = document.getElementById("subject").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const body = `
+Nom : ${name}
+
+Email : ${email}
+
+Téléphone : ${phone}
+
+Message :
+${message}
+        `;
+
+        const gmailURL =
+            `https://mail.google.com/mail/?view=cm&fs=1` +
+            `&to=franckwatkakule@gmail.com` +
+            `&su=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(body)}`;
+
+        window.open(gmailURL, "_blank");
+
+        contactForm.reset();
+    });
+}
