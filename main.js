@@ -37,19 +37,19 @@ window.onscroll = () => {
     navbar.classList.remove('active');
 };
 
- ScrollReveal({
+ScrollReveal({
     distance : '80px',
     duration : 2000,
     delay : 200,
- });
+});
 
- ScrollReveal().reveal('.home-content, heading', { origin: 'top'});
- ScrollReveal().reveal('.home-img, .services-container, .portofolio-box, .contact form', { origin: 'bottom'});
- ScrollReveal().reveal('.home-contact h1, .about-img', { origin: 'left'});
- ScrollReveal().reveal('.home-contact p, .about-content', { origin: 'right'});
+ScrollReveal().reveal('.home-content, .heading', { origin: 'top'});
+ScrollReveal().reveal('.home-img, .services-container, .portofolio-box, .contact form', { origin: 'bottom'});
+ScrollReveal().reveal('.home-contact h1, .about-img', { origin: 'left'});
+ScrollReveal().reveal('.home-contact p, .about-content', { origin: 'right'});
 
 
- const typed = new Typed('.multiple-text', {
+const typed = new Typed('.multiple-text', {
     strings: ['Web developper', 'Designer Web', 'Computer Engineer Student','IT support learner','Networking learner','Java Programming learner'],
     typeSpeed: 70,
     backSpeed: 70,
@@ -57,112 +57,29 @@ window.onscroll = () => {
     loop: true,
 });
 
-/* const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(contactForm);
-        const name = formData.get('name')?.toString().trim() || '';
-        const email = formData.get('email')?.toString().trim() || '';
-        const phone = formData.get('phone')?.toString().trim() || '';
-        const subject = formData.get('subject')?.toString().trim() || 'Nouveau message';
-        const message = formData.get('message')?.toString().trim() || '';
-        const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0ATéléphone: ${phone}%0D%0ASujet: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-
-        const gmailURL =
-            `https://mail.google.com/mail/?view=cm&fs=1` +
-            `&to=franckwatkakule@gmail.com` +
-            `&su=${encodeURIComponent(subject)}` +
-            `&body=${encodeURIComponent(body)}`;
-
-        window.open(gmailURL, "_blank");
-
-        contactForm.reset();
-      });
-    }  
-
-/*const contactForm = document.getElementById("contactForm");
-
-if (contactForm) {
-    contactForm.addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const phone = document.getElementById("phone").value.trim();
-        const subject = document.getElementById("subject").value.trim();
-        const message = document.getElementById("message").value.trim();
-
-        const body = `
-Nom : ${name}
-
-Email : ${email}
-
-Téléphone : ${phone}
-
-Message :
-${message}
-        `;
-
-        const gmailURL =
-            `https://mail.google.com/mail/?view=cm&fs=1` +
-            `&to=franckwatkakule@gmail.com` +
-            `&su=${encodeURIComponent(subject)}` +
-            `&body=${encodeURIComponent(body)}`;
-
-        window.open(gmailURL, "_blank");
-
-        contactForm.reset();
-    });
-}    */
-
-
-
-  /*  const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-      contactForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(contactForm);
-        const name = formData.get('name')?.toString().trim() || '';
-        const email = formData.get('email')?.toString().trim() || '';
-        const phone = formData.get('phone')?.toString().trim() || '';
-        const subject = formData.get('subject')?.toString().trim() || 'Nouveau message';
-        const message = formData.get('message')?.toString().trim() || '';
-        const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0ATéléphone: ${phone}%0D%0ASujet: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-
-        window.location.href = `mailto:franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-        contactForm.reset(); 
-      });
-} */
-const form = document.getElementById("contactForm");
+// Contact form handling: open the user's mail client with a prefilled message using a mailto: link.
+// Using mailto: ensures the default mail app (including Gmail app on mobile) opens with the fields filled.
+const form = document.querySelector('#contactForm');
 
 if (form) {
-    form.addEventListener("submit", function (e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const fullname = document.getElementById("fullname")?.value.trim() || "";
-        const email = document.getElementById("email")?.value.trim() || "";
-        const phone = document.getElementById("phone")?.value.trim() || "";
-        const subject = document.getElementById("subject")?.value.trim() || "Message de contact";
-        const message = document.getElementById("message")?.value.trim() || "";
+        const fullname = document.getElementById('fullname')?.value.trim() || '';
+        const email = document.getElementById('email')?.value.trim() || '';
+        const phone = document.getElementById('phone')?.value.trim() || '';
+        const subject = document.getElementById('subject')?.value.trim() || 'Message de contact';
+        const message = document.getElementById('message')?.value.trim() || '';
 
-        const body =
-`Full Name: ${fullname}
+        const body = `Full Name: ${fullname}\r\n\r\nEmail: ${email}\r\n\r\nPhone Number: ${phone}\r\n\r\nMessage:\r\n${message}`;
 
-Email: ${email}
+        // Build a mailto: URL and open it. Use encodeURIComponent to escape special chars and newlines.
+        const mailto = `mailto:franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-Phone Number: ${phone}
+        // Use location.href to open the mail client (works well in browsers and mobile apps handling mailto).
+        window.location.href = mailto;
 
-Message:
-${message}`;
-
-        const gmailLink =
-`https://mail.google.com/mail/?view=cm&fs=1&to=franckwatkakule@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        window.open(gmailLink, "_blank");
+        // Reset the form after opening mail client
         form.reset();
     });
 }
-
