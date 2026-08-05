@@ -116,7 +116,7 @@ ${message}
 
 
 
-    const contactForm = document.getElementById('contactForm');
+  /*  const contactForm = document.getElementById('contactForm');
     if (contactForm) {
       contactForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -132,4 +132,32 @@ ${message}
         window.location.href = `mailto:franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
         contactForm.reset(); 
       });
+} */
+const form = document.getElementById("contactForm");
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const fullname = document.getElementById("fullname").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
+    const body =
+`Full Name: ${fullname}
+
+Email: ${email}
+
+Phone Number: ${phone}
+
+Message:
+${message}`;
+
+    const gmailLink =
+`https://mail.google.com/mail/?view=cm&fs=1&to=franckwatkakule@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailLink, "_blank");
+});
 }
+
