@@ -129,6 +129,7 @@ ${message}
         const message = formData.get('message')?.toString().trim() || '';
         const body = `Nom: ${name}%0D%0AEmail: ${email}%0D%0ATéléphone: ${phone}%0D%0ASujet: ${subject}%0D%0A%0D%0AMessage:%0D%0A${message}`;
 
-        window.location.href = `franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-        contactForm.reset();
+        window.location.href = `mailto:franckwatkakule@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        contactForm.reset(); 
+      });
 }
