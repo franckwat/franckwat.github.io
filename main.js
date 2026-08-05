@@ -21,7 +21,10 @@ window.onscroll = () => {
                 links.classList.remove('active');
             });
 
-            document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+            const activeLink = document.querySelector('header nav a[href*="' + id + '"]');
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
         }
     });
 
@@ -135,16 +138,17 @@ ${message}
 } */
 const form = document.getElementById("contactForm");
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+if (form) {
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    const fullname = document.getElementById("fullname").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const subject = document.getElementById("subject").value;
-    const message = document.getElementById("message").value;
+        const fullname = document.getElementById("fullname")?.value.trim() || "";
+        const email = document.getElementById("email")?.value.trim() || "";
+        const phone = document.getElementById("phone")?.value.trim() || "";
+        const subject = document.getElementById("subject")?.value.trim() || "Message de contact";
+        const message = document.getElementById("message")?.value.trim() || "";
 
-    const body =
+        const body =
 `Full Name: ${fullname}
 
 Email: ${email}
@@ -154,10 +158,11 @@ Phone Number: ${phone}
 Message:
 ${message}`;
 
-    const gmailLink =
+        const gmailLink =
 `https://mail.google.com/mail/?view=cm&fs=1&to=franckwatkakule@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    window.open(gmailLink, "_blank");
-});
+        window.open(gmailLink, "_blank");
+        form.reset();
+    });
 }
 
